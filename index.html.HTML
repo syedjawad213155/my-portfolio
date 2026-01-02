@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syed Jawad Hussain Shah | Visual Architect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg: #0a0118;
+            --accent: #bc13fe; 
+            --accent-glow: rgba(188, 19, 254, 0.6);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(188, 19, 254, 0.3);
+            --text-main: #ffffff;
+            --text-dim: #c5b3d9;
+            --ai-color: #FF9A00; --ps-color: #31A8FF; --id-color: #FF3366; --ae-color: #CF96FD;
+            --whatsapp: #25D366; --linkedin: #0077B5; --behance: #0057ff; --gmail: #EA4335;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; cursor: none; }
+        body { background-color: var(--bg); color: var(--text-main); font-family: 'Roboto', sans-serif; overflow-x: hidden; background: radial-gradient(circle at top right, #1a0533, #0a0118), radial-gradient(circle at bottom left, #0f0224, #0a0118); background-attachment: fixed; }
+
+        /* Mouse Trail */
+        .cursor-drop { position: fixed; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 10000; box-shadow: 0 0 15px var(--accent); transform: translate(-50%, -50%); animation: dropFade 0.8s ease-out forwards; }
+        @keyframes dropFade { 0% { transform: translate(-50%, -50%) scale(1); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(3); opacity: 0; } }
+        #main-cursor { position: fixed; width: 8px; height: 8px; background: white; border-radius: 50%; pointer-events: none; z-index: 10001; box-shadow: 0 0 10px white; transform: translate(-50%, -50%); }
+
+        nav { padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); }
+        .logo { font-size: 1.6rem; font-weight: 900; letter-spacing: 4px; color: var(--accent); text-decoration: none; text-shadow: 0 0 15px var(--accent); }
+        .nav-links a { text-decoration: none; color: #fff; margin-left: 30px; font-size: 0.85rem; font-weight: 700; opacity: 0.7; transition: 0.3s; }
+        .nav-links a:hover { opacity: 1; color: var(--accent); }
+
+        /* Hero */
+        .hero { height: 100vh; display: flex; align-items: center; padding: 0 8%; gap: 60px; }
+        .hero-text { flex: 1.2; }
+        .animated-name { font-size: clamp(2rem, 5vw, 4rem); font-weight: 900; color: #fff; white-space: nowrap; overflow: hidden; border-right: 4px solid var(--accent); width: 0; animation: typing 3.5s steps(30, end) forwards, blink 0.8s infinite; }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink { 50% { border-color: transparent; } }
+
+        .explore-btn { display: inline-block; background: var(--accent); color: #fff; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; z-index: 1; }
+        .explore-btn:hover { transform: scale(1.1) translateY(-5px); box-shadow: 0 0 30px var(--accent), 0 0 60px var(--accent-glow); }
+
+        .profile-container { position: relative; z-index: 1; }
+        .profile-card { width: 380px; height: 500px; border-radius: 20px; overflow: hidden; border: 1px solid var(--glass-border); position: relative; z-index: 2; animation: float 6s infinite ease-in-out; }
+        .profile-card img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-container::after { content: ''; position: absolute; top: 10%; left: 10%; width: 80%; height: 80%; background: var(--accent); filter: blur(80px); opacity: 0.5; z-index: -1; border-radius: 50%; animation: pulseGlow 4s infinite alternate ease-in-out; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes pulseGlow { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(1.3); opacity: 0.7; } }
+
+        /* Sections */
+        section { padding: 100px 8%; }
+        .section-title { font-size: 2.5rem; margin-bottom: 50px; position: relative; padding-bottom: 10px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 4px; background: var(--accent); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        
+        /* Glass Card Animations */
+        .glass-card { 
+            background: var(--glass); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid var(--glass-border); 
+            border-radius: 20px; 
+            padding: 40px; 
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            position: relative; 
+            overflow: hidden; 
+        }
+
+        .glass-card:hover { 
+            transform: scale(1.05) translateY(-10px); 
+            background: rgba(188, 19, 254, 0.1); 
+            border-color: var(--accent);
+            box-shadow: 0 15px 45px var(--accent-glow); 
+        }
+
+        .glass-card h3, .glass-card p, .glass-card i { transition: 0.4s ease-out; }
+        .glass-card:hover h3 { transform: translateY(-5px); color: #fff; text-shadow: 0 0 10px var(--accent); }
+        .glass-card:hover p { transform: translateY(-3px); color: #fff; }
+        .glass-card:hover i.main-icon { transform: translateY(-10px) scale(1.1); color: #fff; }
+        .glass-card i.main-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; display: block; }
+
+        /* Tools Flex */
+        .tools-flex { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px; }
+        .tool-icon { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 10px; border-radius: 10px; background: rgba(255,255,255,0.03); transition: 0.4s; flex: 1; min-width: 70px; }
+        .tool-icon:hover { transform: translateY(-8px); background: rgba(255,255,255,0.1); color: #fff; }
+
+        /* Modal */
+        .modal { position: fixed; inset: 0; background: rgba(5, 0, 15, 0.98); z-index: 9999; display: none; align-items: center; justify-content: center; opacity: 0; transition: 0.4s; backdrop-filter: blur(15px); }
+        .modal.active { display: flex; opacity: 1; }
+        .modal-content { width: 90%; max-width: 1100px; max-height: 85vh; overflow-y: auto; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border); padding: 50px; border-radius: 25px; position: relative; }
+        .close-modal { position: fixed; top: 30px; right: 40px; font-size: 3rem; color: var(--accent); cursor: pointer; }
+        .project-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px; }
+        .project-gallery img { width: 100%; border-radius: 15px; border: 1px solid var(--glass-border); opacity: 0; transform: translateY(30px); transition: 0.5s ease; }
+        .img-reveal { opacity: 1 !important; transform: translateY(0) !important; }
+
+        /* Contact Section with BRAND COLORS */
+        .contact-container { position: relative; z-index: 1; max-width: 900px; margin: 50px auto; }
+        .contact-box { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); padding: 60px; border-radius: 30px; text-align: center; position: relative; z-index: 2; animation: contactFloat 6s infinite ease-in-out; transition: 0.5s; }
+        .contact-box:hover { transform: scale(1.03); background: rgba(188, 19, 254, 0.1); box-shadow: 0 20px 60px var(--accent-glow); }
+        
+        .contact-container::after { content: ''; position: absolute; top: 20%; left: 20%; width: 60%; height: 60%; background: var(--accent); filter: blur(100px); opacity: 0.3; z-index: -1; border-radius: 50%; animation: contactGlow 4s infinite alternate ease-in-out; }
+
+        @keyframes contactFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes contactGlow { 0% { transform: scale(1); opacity: 0.2; } 100% { transform: scale(1.4); opacity: 0.5; } }
+
+        .social-links-container { display: flex; justify-content: center; gap: 40px; margin-top: 30px; flex-wrap: wrap; }
+        .social-link { font-size: 3.2rem; text-decoration: none; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); filter: grayscale(100%); opacity: 0.6; }
+        
+        /* Brand Specific Colors on Hover */
+        .social-link:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.3) translateY(-15px); }
+        .social-link.gmail:hover { color: var(--gmail); filter: drop-shadow(0 0 20px rgba(234, 67, 53, 0.6)); }
+        .social-link.whatsapp:hover { color: var(--whatsapp); filter: drop-shadow(0 0 20px rgba(37, 211, 102, 0.6)); }
+        .social-link.linkedin:hover { color: var(--linkedin); filter: drop-shadow(0 0 20px rgba(0, 119, 181, 0.6)); }
+        .social-link.behance:hover { color: var(--behance); filter: drop-shadow(0 0 20px rgba(0, 87, 255, 0.6)); }
+
+        @media (max-width: 968px) { .hero { flex-direction: column-reverse; text-align: center; height: auto; padding-top: 120px; } * { cursor: auto; } #main-cursor { display: none; } .profile-card { width: 280px; height: 350px; } }
+    </style>
+</head>
+<body>
+
+    <div id="main-cursor"></div>
+
+    <nav>
+        <a href="#" class="logo reveal">PORTFOLIO</a>
+        <div class="nav-links reveal">
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#works">WORKS</a>
+            <a href="#contact">CONTACT</a>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <div class="name-wrapper"><div class="animated-name">SYED JAWAD HUSSAIN SHAH</div></div>
+            <p class="reveal">Visual Architect & Graphic Designer. High-end Branding, Typography, and Magazine Specialist.</p>
+            <div class="reveal" style="margin-top: 35px;">
+                <a href="#works" class="explore-btn">EXPLORE ARCHIVE</a>
+            </div>
+        </div>
+        <div class="image-container reveal">
+            <div class="profile-container">
+                <div class="profile-card"><img src="https://ibb.co/ZP4xhGK/Jawad-jpg.jpg" alt="Syed Jawad"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title reveal">The Creative Pulse</h2>
+        <div class="grid">
+            <div class="glass-card reveal">
+                <i class="fas fa-graduation-cap main-icon"></i>
+                <h3>Education</h3>
+                <p style="color:var(--text-dim); line-height: 1.6;">Bachelor's of Pharmacy (University of Peshawar)<br>Matric Science (Karachi Board)</p>
+            </div>
+            <div class="glass-card reveal">
+                <i class="fas fa-microchip main-icon"></i>
+                <h3>Software Stack</h3>
+                <div class="tools-flex">
+                    <div class="tool-icon ai"><i class="fas fa-vector-square"></i><span>Illustrator</span></div>
+                    <div class="tool-icon ps"><i class="fas fa-camera-retro"></i><span>Photoshop</span></div>
+                    <div class="tool-icon id"><i class="fas fa-book-open"></i><span>InDesign</span></div>
+                    <div class="tool-icon ae"><i class="fas fa-film"></i><span>After Effects</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="works">
+        <h2 class="section-title reveal">Selected Archives</h2>
+        <div class="grid">
+            <div class="glass-card reveal" onclick="openProject('magazines')">
+                <i class="fas fa-copy main-icon"></i>
+                <h3>Creative Magazines</h3>
+                <p>Premium layouts and editorial designs.</p>
+            </div>
+            <div class="glass-card reveal" onclick="openProject('perfume')">
+                <i class="fas fa-gem main-icon"></i>
+                <h3>Bin Rizwan Perfumes</h3>
+                <p>Luxury scent-based visual identity.</p>
+            </div>
+            <div class="glass-card reveal" onclick="openProject('islamic')">
+                <i class="fas fa-scroll main-icon"></i>
+                <h3>Sirat al Jinan</h3>
+                <p>Religious publication & typesetting.</p>
+            </div>
+            <div class="glass-card reveal" onclick="openProject('builders')">
+                <i class="fas fa-building main-icon"></i>
+                <h3>JB Builders</h3>
+                <p>Real estate corporate branding.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="projectModal">
+        <span class="close-modal" onclick="closeProject()">&times;</span>
+        <div class="modal-content">
+            <h2 id="modalTitle" style="color: var(--accent); font-size: 2.5rem;"></h2>
+            <p id="modalDesc" style="color: var(--text-dim); margin: 20px 0;"></p>
+            <div class="project-gallery" id="modalGallery"></div>
+        </div>
+    </div>
+
+    <section id="contact">
+        <div class="contact-container">
+            <div class="contact-box reveal">
+                <h2 style="margin-bottom: 10px; font-size: 2.5rem; letter-spacing: 2px;">LET'S CONNECT</h2>
+                <p style="color: var(--text-dim); margin-bottom: 30px;">Open for collaborations and premium design inquiries.</p>
+                <div class="social-links-container">
+                    <a href="mailto:syedjawadshah349@gmail.com?subject=Inquiry" class="social-link gmail"><i class="fas fa-envelope"></i></a>
+                    <a href="https://wa.me/923490230566" target="_blank" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.linkedin.com/in/syed-jawad-hussain-shah-422965158/" target="_blank" class="social-link linkedin"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.behance.net/syedjashah" target="_blank" class="social-link behance"><i class="fab fa-behance"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const mainCursor = document.getElementById('main-cursor');
+            mainCursor.style.left = e.clientX + 'px'; mainCursor.style.top = e.clientY + 'px';
+            const drop = document.createElement('div');
+            drop.className = 'cursor-drop'; drop.style.left = e.clientX + 'px'; drop.style.top = e.clientY + 'px';
+            document.body.appendChild(drop);
+            setTimeout(() => drop.remove(), 800);
+        });
+
+        const projectData = {
+            'magazines': { title: 'Creative Magazines', desc: 'Premium editorial and cover designs.', images: ['https://i.postimg.cc/85M6S0yK/Jawad-transparent.png'] },
+            'perfume': { title: 'Bin Rizwan Fragrance', desc: 'Luxury scent-based visual identity.', images: ['https://i.postimg.cc/85M6S0yK/Jawad-transparent.png'] },
+            'islamic': { title: 'Sirat al Jinan', desc: 'Religious publication & typesetting.', images: ['https://i.postimg.cc/mD8T1F4b/Jawad-jpg.jpg'] },
+            'builders': { title: 'JB Builders & Developers', desc: 'Corporate branding for real estate.', images: ['https://i.postimg.cc/85M6S0yK/Jawad-transparent.png'] }
+        };
+
+        function openProject(id) {
+            const data = projectData[id];
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalDesc').innerText = data.desc;
+            const gallery = document.getElementById('modalGallery');
+            gallery.innerHTML = data.images.map(img => `<img src="${img}" alt="Work">`).join('');
+            document.getElementById('projectModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                gallery.querySelectorAll('img').forEach((img, i) => {
+                    setTimeout(() => img.classList.add('img-reveal'), i * 150);
+                });
+            }, 300);
+        }
+
+        function closeProject() {
+            document.getElementById('projectModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        ScrollReveal().reveal('.reveal', { delay: 200, distance: '50px', origin: 'bottom', duration: 1000, interval: 200, reset: true });
+    </script>
+</body>
+</html>
