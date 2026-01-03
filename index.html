@@ -253,12 +253,51 @@
         }
 
         function closeProject() {
-            document.getElementById('projectModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
+           const projectData = {
+            'magazines': { 
+                title: 'Creative Magazines', 
+                desc: 'Premium editorial and cover designs.', 
+                images: ['https://i.ibb.co/ZP4xhGK/Jawad-jpg.jpg'] 
+            },
+            'perfume': { 
+                title: 'Bin Rizwan Fragrance', 
+                desc: 'Luxury scent-based visual identity.', 
+                images: [
+                    'https://i.ibb.co/QyjHkbC/image.png',
+                    'https://i.ibb.co/RTh4C0Q/image.png',
+                    'https://i.ibb.co/Q7T0YCT/image.png',
+                    'https://i.ibb.co/MkJQL0C/image.png',
+                    'https://i.ibb.co/cKCTqrQ/image.png',
+                    'https://i.ibb.co/cSFvk9J/image.png',
+                    'https://i.ibb.co/cSNkX2s/image.png',
+                    'https://i.ibb.co/pvSrXhk/image.png',
+                    'https://i.ibb.co/k27DrPP/image.png',
+                    'https://i.ibb.co/xSSBDjz/image.png',
+                    'https://i.ibb.co/qFnTSBd/image.png',
+                    'https://i.ibb.co/6cCM02Y/image.png',
+                    'https://i.ibb.co/Jj3gXRT/image.png',
+                    'https://i.ibb.co/KzSFqnK/image.png',
+                    'https://i.ibb.co/Sg2Bmj8/image.png',
+                    'https://i.ibb.co/dwm6mBW/image.png',
+                    'https://i.ibb.co/kgcyrYJ/image.png',
+                    'https://i.ibb.co/LhJ7WRJ/image.png'
+                ] 
+            },
+            'islamic': { 
+                title: 'Sirat al Jinan', 
+                desc: 'Religious publication & typesetting.', 
+                images: ['https://i.ibb.co/ZP4xhGK/Jawad-jpg.jpg'] 
+            },
+            'builders': { 
+                title: 'JB Builders & Developers', 
+                desc: 'Corporate branding for real estate.', 
+                images: ['https://i.ibb.co/ZP4xhGK/Jawad-jpg.jpg'] 
+            }
+        };
 
         ScrollReveal().reveal('.reveal', { delay: 200, distance: '50px', origin: 'bottom', duration: 1000, interval: 200, reset: true });
     </script>
 </body>
 
 </html> 
+
